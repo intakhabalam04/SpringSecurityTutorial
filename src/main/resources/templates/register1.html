@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff;
+            text-align: center;
+        }
+
+        .success-message {
+            background-color: #5e057e;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #c299d0;
+            border-radius: 10px;
+        }
+
+        .container h2 {
+            color: #5e057e;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            color: #5e057e;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #c299d0;
+            border-radius: 5px;
+        }
+
+        .btn {
+            background-color: #5e057e;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #c299d0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div th:if="${param.success}">
+        <div class="success-message">
+            Registration successful! You can now log in.
+        </div>
+
+    </div>
+
+    <h2>Registration Form</h2>
+    <form action="#" method="POST" role="form" th:action="@{register}" th:object="${user}">
+
+        <div class="input-group">
+            <label for="fullname">Full Name:</label>
+            <input th:field="*{fullname}" type="text" id="fullname" name="fullname" required>
+        </div>
+
+        <div class="input-group">
+            <label for="email">Email:</label>
+            <input th:field="*{email}" type="email" id="email" name="email" required>
+        </div>
+
+        <div class="input-group">
+            <label for="username">Username:</label>
+            <input th:field="*{username}" type="text" id="username" name="username" required>
+            <span th:if="${userexist}" style="color: red">Username not available</span>
+        </div>
+        <div class="input-group">
+            <label for="password">Password:</label>
+            <input th:field="*{password}" type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn">Register</button>
+    </form>
+
+
+</div>
+</body>
+</html>

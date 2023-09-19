@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .container {
+      width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #c299d0;
+      border-radius: 10px;
+    }
+
+    .container h2 {
+      color: #5e057e;
+    }
+
+    .input-group {
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: block;
+      color: #5e057e;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #c299d0;
+      border-radius: 5px;
+    }
+
+    .btn {
+      background-color: #5e057e;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .error-message {
+      background-color: #ff0000;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+  }
+    .logout-message {
+      background-color: #c299d0;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .btn:hover {
+      background-color: #c299d0;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <div th:if="${param.error}">
+    <div class="error-message">
+        Error: Incorrect username or password. Please try again.
+    </div>
+  </div>
+
+  <div th:if="${param.logout}">
+    <div class="logout-message">
+     <p> Logout successfull!</p>
+    </div>
+  </div>
+
+
+  <h2>Login Form</h2>
+  <form action="#" method="POST" role="form" th:action="@{login}" th:object="${user}">
+    <div class="input-group">
+      <label for="username">Username:</label>
+      <input th:field="*{username}" type="text" id="username" name="username" required>
+    </div>
+    <div class="input-group">
+      <label for="password">Password:</label>
+      <input th:field="*{password}" type="password" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn">Login</button>
+  </form>
+  <span>Not registerd yet?<a th:href="@{/register}">Register</a></span>
+</div>
+</body>
+</html>
